@@ -16,9 +16,9 @@ for _ in range(m):
 
 distance[1] = 0 # 출발 노드에서 출발 노드까지의 최단 거리는 0
 
-for _ in range(n - 1): # 음수 사이클이 없을 때 최단 거리를 구성할 수 있는 엣지의 최대 개수는 n - 1
-    for s, e, w in edges:
-        if distance[s] != sys.maxsize and distance[e] > distance[s] + w: # 최단 거리 갱신 (출발 노드에서 s 노드까지 도달할 수 있는 경로가 존재할 경우)
+for _ in range(n - 1): # 간선 완화 (음수 사이클이 없을 때 최단 거리를 구성할 수 있는 엣지의 최대 개수는 n - 1)
+    for s, e, w in edges: # 최단 거리 갱신
+        if distance[s] != sys.maxsize and distance[e] > distance[s] + w:
             distance[e] = distance[s] + w
 
 for s, e, w in edges: # 음수 사이클 유무를 확인하기 위해 최단 거리 재갱신
